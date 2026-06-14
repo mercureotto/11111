@@ -434,3 +434,67 @@ img,svg{display:block}
   .stage{min-height:520px}
   .topnav{gap:16px}
 }
+
+/* ===================================================================
+   v2 — soft hand-made dungeon + hand-drawn pixel sprites
+   (overrides the legacy stage art above)
+   =================================================================== */
+.dgn{position:absolute;inset:0;z-index:0;overflow:hidden}
+.dgn__deep{position:absolute;inset:0;background:
+   radial-gradient(120% 90% at 50% 18%, #2b2018 0%, #140e09 42%, #070504 100%)}
+.dgn__arch{position:absolute;inset:0;width:100%;height:100%;
+   filter:blur(1.4px);opacity:.96}
+/* warm beam falling from the gate */
+.dgn__beam{position:absolute;left:50%;top:-4%;width:300px;height:74%;
+   transform:translateX(-50%);pointer-events:none;
+   background:linear-gradient(180deg,rgba(255,205,120,.16),rgba(255,180,90,.05) 45%,transparent 78%);
+   filter:blur(12px);mix-blend-mode:screen}
+/* torch glows (soft, no hard edges) */
+.dgn__torch{position:absolute;top:24%;width:240px;height:300px;border-radius:50%;
+   filter:blur(40px);mix-blend-mode:screen;pointer-events:none;
+   background:radial-gradient(circle,rgba(255,150,45,.5),rgba(255,90,20,.16) 45%,transparent 70%);
+   animation:flick 3.2s ease-in-out infinite}
+.dgn__torch--l{left:6%}
+.dgn__torch--r{right:6%;animation-delay:1.2s}
+/* lit pool the hero stands in */
+.dgn__pool{position:absolute;left:46%;bottom:24%;transform:translateX(-50%);
+   width:300px;height:120px;border-radius:50%;pointer-events:none;
+   background:radial-gradient(50% 60% at 50% 45%, rgba(255,200,120,.28), rgba(150,100,50,.12) 55%, transparent 74%);
+   filter:blur(6px)}
+.dgn__vign{position:absolute;inset:0;pointer-events:none;background:
+   radial-gradient(80% 70% at 50% 42%, transparent 48%, rgba(0,0,0,.6) 100%),
+   linear-gradient(180deg, rgba(0,0,0,.35) 0%, transparent 18%, transparent 60%, rgba(0,0,0,.72) 100%)}
+
+/* --- pixel scene --- */
+.pscene{position:absolute;inset:0;z-index:4;pointer-events:none}
+.spr{position:absolute;image-rendering:pixelated;image-rendering:crisp-edges}
+.spr--hero{left:46%;bottom:27%;transform:translateX(-50%);
+   filter:drop-shadow(0 12px 9px rgba(0,0,0,.55));
+   animation:bob 3.6s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-6px)}}
+/* stone platform under the hero */
+.platform{position:absolute;left:46%;bottom:22%;transform:translateX(-50%);
+   width:188px;height:46px;border-radius:50%;
+   background:
+     radial-gradient(60% 70% at 50% 38%, #4b3f30, #2a2018 70%, transparent 72%);
+   box-shadow:0 10px 26px rgba(0,0,0,.6), inset 0 3px 0 rgba(255,220,160,.18)}
+.platform::after{content:"";position:absolute;left:50%;bottom:-10px;transform:translateX(-50%);
+   width:150px;height:24px;border-radius:50%;background:rgba(0,0,0,.5);filter:blur(6px)}
+
+/* companion sitting on the treasure chest, lower-right */
+.props{position:absolute;right:13%;bottom:22%;width:120px;height:158px}
+.spr--companion{left:50%;bottom:48px;transform:translateX(-50%);
+   filter:drop-shadow(0 6px 5px rgba(0,0,0,.5));
+   animation:bob2 3.1s ease-in-out .4s infinite}
+@keyframes bob2{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-4px)}}
+.spr--chest{left:50%;bottom:0;transform:translateX(-50%);
+   filter:drop-shadow(0 8px 7px rgba(0,0,0,.55))}
+
+/* floating nameplate above the hero */
+.plate{position:absolute;left:46%;top:30%;transform:translateX(-50%);z-index:6;
+   font-family:var(--fancy);font-size:26px;color:#f4ecd9;white-space:nowrap;
+   display:flex;align-items:center;gap:11px;
+   text-shadow:0 2px 0 #000,0 0 18px rgba(0,0,0,.9)}
+.plate__dl{font-size:13px;width:24px;height:24px;border-radius:50%;
+   display:grid;place-items:center;background:rgba(255,255,255,.08);
+   border:1px solid var(--line);color:var(--txt-dim)}

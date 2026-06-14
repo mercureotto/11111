@@ -47,7 +47,6 @@
           <span class="card__title">Play</span>
           <span class="card__shine"></span>
         </a>
-
         <a class="card card--docs" href="#">
           <span class="card__body">
             <span class="card__title">Docs</span>
@@ -55,7 +54,6 @@
           </span>
           <span class="card__icon">📜</span>
         </a>
-
         <a class="card card--blog" href="#">
           <span class="card__body">
             <span class="card__title">Blog</span>
@@ -63,7 +61,6 @@
           </span>
           <span class="card__icon">🎙️</span>
         </a>
-
         <a class="card card--economy" href="#">
           <span class="card__body">
             <span class="card__title">Economy</span>
@@ -71,7 +68,6 @@
           </span>
           <span class="card__icon">🔶</span>
         </a>
-
         <a class="card card--socials" href="#">
           <span class="card__body">
             <span class="card__title">Socials</span>
@@ -86,23 +82,40 @@
 
       <!-- ---------- CENTER: hero stage ---------- -->
       <section class="stage" id="stage">
-        <!-- generated dark-fantasy dungeon scene -->
-        <img class="stage__bg" id="stageBg" src="assets/scene.webp" alt="The dungeon of New Geltion" />
-        <div class="stage__scrim"></div>
-        <div class="bg__dust" id="dust"></div>
-        <div class="stage__vignette"></div>
+
+        <!-- soft atmospheric dungeon (hand-made) -->
+        <div class="dgn" aria-hidden="true">
+          <div class="dgn__deep"></div>
+          <svg class="dgn__arch" viewBox="0 0 600 460" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <radialGradient id="opening" cx="50%" cy="62%" r="58%">
+                <stop offset="0" stop-color="#3a2c1d"/>
+                <stop offset="1" stop-color="#0a0706"/>
+              </radialGradient>
+            </defs>
+            <ellipse cx="300" cy="300" rx="124" ry="186" fill="url(#opening)"/>
+            <rect x="0" y="0" width="140" height="460" fill="#0b0807"/>
+            <rect x="460" y="0" width="140" height="460" fill="#0b0807"/>
+            <path d="M120 232 Q300 36 480 232 L480 0 L120 0 Z" fill="#0b0807"/>
+            <path d="M150 460 V252 a82 82 0 0 1 300 0 V460" fill="none" stroke="#180f08" stroke-width="30"/>
+          </svg>
+          <div class="dgn__beam"></div>
+          <div class="dgn__torch dgn__torch--l"></div>
+          <div class="dgn__torch dgn__torch--r"></div>
+          <div class="dgn__pool"></div>
+          <div class="bg__dust" id="dust"></div>
+          <div class="dgn__vign"></div>
+        </div>
 
         <!-- Hero copy (top-left) -->
         <div class="hero">
           <h1 class="hero__title">Welcome back, adventurer <span class="hero__clover">🍀</span></h1>
           <p class="hero__kicker">DUNGEONS: NOW LIVE!</p>
-
           <div class="hero__desc">
             Geltion is a browser-based MMORPG with massive onchain stakes. Delve dungeons,
             farm islands, and explore the dark fantasy world of New Geltion — where risk and
             reward go hand in hand.
           </div>
-
           <div class="hero__stats">
             <div class="stat">
               <span class="stat__trophy">🏆</span>
@@ -117,10 +130,15 @@
           </div>
         </div>
 
-        <!-- floating nameplate above the hero in the scene -->
-        <div class="nameplate" id="nameplate">
-          <span>Guest</span>
-          <span class="nameplate__dl">⬇</span>
+        <!-- Pixel scene: hand-drawn sprites -->
+        <div class="pscene">
+          <div class="plate" id="nameplate"><span>Guest</span><span class="plate__dl">⬇</span></div>
+          <div class="platform"></div>
+          <canvas class="spr spr--hero" data-sprite="hero" data-scale="7" id="heroSpr"></canvas>
+          <div class="props">
+            <canvas class="spr spr--companion" data-sprite="companion" data-scale="5"></canvas>
+            <canvas class="spr spr--chest" data-sprite="chest" data-scale="5"></canvas>
+          </div>
         </div>
 
         <!-- big CTA -->
@@ -147,6 +165,7 @@
     </main>
   </div>
 
+  <script src="js/sprites.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
