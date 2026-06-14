@@ -443,19 +443,30 @@ img,svg{display:block}
 .dgn__deep{position:absolute;inset:0;background:
    radial-gradient(120% 90% at 50% 18%, #2b2018 0%, #140e09 42%, #070504 100%)}
 .dgn__arch{position:absolute;inset:0;width:100%;height:100%;
-   filter:blur(1.4px);opacity:.96}
+   filter:blur(.4px)}
 /* warm beam falling from the gate */
 .dgn__beam{position:absolute;left:50%;top:-4%;width:300px;height:74%;
    transform:translateX(-50%);pointer-events:none;
    background:linear-gradient(180deg,rgba(255,205,120,.16),rgba(255,180,90,.05) 45%,transparent 78%);
    filter:blur(12px);mix-blend-mode:screen}
 /* torch glows (soft, no hard edges) */
-.dgn__torch{position:absolute;top:24%;width:240px;height:300px;border-radius:50%;
-   filter:blur(40px);mix-blend-mode:screen;pointer-events:none;
-   background:radial-gradient(circle,rgba(255,150,45,.5),rgba(255,90,20,.16) 45%,transparent 70%);
+.dgn__torch{position:absolute;top:22%;width:260px;height:320px;border-radius:50%;
+   filter:blur(38px);mix-blend-mode:screen;pointer-events:none;
+   background:radial-gradient(circle,rgba(255,160,55,.62),rgba(255,95,22,.2) 46%,transparent 70%);
    animation:flick 3.2s ease-in-out infinite}
-.dgn__torch--l{left:6%}
-.dgn__torch--r{right:6%;animation-delay:1.2s}
+.dgn__torch--l{left:13%}
+.dgn__torch--r{right:13%;animation-delay:1.2s}
+/* floor embers + bottom film strip (filled by JS) */
+.dgn__embers{position:absolute;left:0;right:0;bottom:0;height:42%;z-index:1;pointer-events:none}
+.dgn__embers span{position:absolute;border-radius:50%;background:rgba(255,180,90,.8);
+   box-shadow:0 0 6px 1px rgba(255,150,60,.7);animation:emb 4s ease-in-out infinite}
+@keyframes emb{0%,100%{opacity:.25}50%{opacity:.9}}
+.dgn__strip{position:absolute;left:0;right:0;bottom:0;height:26px;z-index:2;display:flex;
+   gap:7px;align-items:flex-end;padding:0 10px;pointer-events:none;
+   -webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
+           mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.dgn__strip span{flex:1;height:16px;border-radius:3px 3px 1px 1px;
+   background:linear-gradient(180deg,#2c2418,#0c0805);box-shadow:inset 0 1px 0 rgba(255,200,120,.12)}
 /* lit pool the hero stands in */
 .dgn__pool{position:absolute;left:46%;bottom:24%;transform:translateX(-50%);
    width:300px;height:120px;border-radius:50%;pointer-events:none;
@@ -473,13 +484,15 @@ img,svg{display:block}
    animation:bob 3.6s ease-in-out infinite}
 @keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-6px)}}
 /* stone platform under the hero */
-.platform{position:absolute;left:46%;bottom:22%;transform:translateX(-50%);
-   width:188px;height:46px;border-radius:50%;
-   background:
-     radial-gradient(60% 70% at 50% 38%, #4b3f30, #2a2018 70%, transparent 72%);
-   box-shadow:0 10px 26px rgba(0,0,0,.6), inset 0 3px 0 rgba(255,220,160,.18)}
-.platform::after{content:"";position:absolute;left:50%;bottom:-10px;transform:translateX(-50%);
-   width:150px;height:24px;border-radius:50%;background:rgba(0,0,0,.5);filter:blur(6px)}
+.platform{position:absolute;left:46%;bottom:20%;transform:translateX(-50%);
+   width:210px;height:54px;border-radius:50%;
+   background:radial-gradient(58% 66% at 50% 32%,
+     #63523c 0%, #3a2c1d 58%, #241a11 76%, #160f09 86%, transparent 88%);
+   box-shadow:0 14px 30px rgba(0,0,0,.65),
+              inset 0 5px 0 rgba(255,224,168,.25),
+              inset 0 -10px 16px rgba(0,0,0,.55)}
+.platform::after{content:"";position:absolute;left:50%;bottom:-14px;transform:translateX(-50%);
+   width:150px;height:22px;border-radius:50%;background:rgba(0,0,0,.5);filter:blur(7px)}
 
 /* companion sitting on the treasure chest, lower-right */
 .props{position:absolute;right:13%;bottom:22%;width:120px;height:158px}

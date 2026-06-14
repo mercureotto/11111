@@ -85,6 +85,28 @@
     }
   }
 
+  /* ---- warm floor embers ------------------------------------------ */
+  function buildEmbers() {
+    var host = document.getElementById('embers');
+    if (!host) return;
+    for (var i = 0; i < 26; i++) {
+      var s = document.createElement('span');
+      var sz = (1 + Math.random() * 2.5).toFixed(1);
+      s.style.width = s.style.height = sz + 'px';
+      s.style.left = (Math.random() * 100).toFixed(2) + '%';
+      s.style.bottom = (Math.random() * 92).toFixed(2) + '%';
+      s.style.animationDelay = (-Math.random() * 4).toFixed(2) + 's';
+      host.appendChild(s);
+    }
+  }
+
+  /* ---- bottom film strip ------------------------------------------ */
+  function buildStrip() {
+    var host = document.getElementById('strip');
+    if (!host) return;
+    for (var i = 0; i < 34; i++) host.appendChild(document.createElement('span'));
+  }
+
   /* ---- tiny toast helper ------------------------------------------ */
   var toastHost;
   function toast(msg) {
@@ -157,8 +179,8 @@
 
   function init() {
     spawnDust();
-    buildTeeth();
-    buildRubble();
+    buildEmbers();
+    buildStrip();
     countUp();
     parallax();
     setupNav();

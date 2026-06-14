@@ -86,24 +86,47 @@
         <!-- soft atmospheric dungeon (hand-made) -->
         <div class="dgn" aria-hidden="true">
           <div class="dgn__deep"></div>
-          <svg class="dgn__arch" viewBox="0 0 600 460" preserveAspectRatio="xMidYMid slice">
+          <svg class="dgn__arch" viewBox="0 0 900 620" preserveAspectRatio="xMidYMid slice">
             <defs>
-              <radialGradient id="opening" cx="50%" cy="62%" r="58%">
-                <stop offset="0" stop-color="#3a2c1d"/>
-                <stop offset="1" stop-color="#0a0706"/>
+              <linearGradient id="wall" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#2a1e14"/><stop offset="1" stop-color="#120c08"/>
+              </linearGradient>
+              <linearGradient id="pil" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#140f09"/><stop offset=".5" stop-color="#41311f"/><stop offset="1" stop-color="#140f09"/>
+              </linearGradient>
+              <radialGradient id="mouth" cx="50%" cy="56%" r="62%">
+                <stop offset="0" stop-color="#3c2b18"/><stop offset="1" stop-color="#0a0705"/>
               </radialGradient>
+              <linearGradient id="rim" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#6f5436"/><stop offset="1" stop-color="#2a1e12"/>
+              </linearGradient>
             </defs>
-            <ellipse cx="300" cy="300" rx="124" ry="186" fill="url(#opening)"/>
-            <rect x="0" y="0" width="140" height="460" fill="#0b0807"/>
-            <rect x="460" y="0" width="140" height="460" fill="#0b0807"/>
-            <path d="M120 232 Q300 36 480 232 L480 0 L120 0 Z" fill="#0b0807"/>
-            <path d="M150 460 V252 a82 82 0 0 1 300 0 V460" fill="none" stroke="#180f08" stroke-width="30"/>
+            <rect width="900" height="620" fill="url(#wall)"/>
+            <!-- carved horns crowning the gate -->
+            <path d="M386 175 q-66 -96 -150 -118 q104 -6 168 86 Z" fill="#241a10"/>
+            <path d="M514 175 q66 -96 150 -118 q-104 -6 -168 86 Z" fill="#241a10"/>
+            <!-- arch opening + ring -->
+            <path d="M300 620 V300 a150 150 0 0 1 300 0 V620 Z" fill="url(#mouth)"/>
+            <path d="M300 620 V300 a150 150 0 0 1 300 0 V620" fill="none" stroke="url(#rim)" stroke-width="34"/>
+            <rect x="430" y="150" width="40" height="44" rx="3" fill="url(#rim)"/>
+            <!-- flanking pillars -->
+            <rect x="120" y="40" width="124" height="580" fill="url(#pil)"/>
+            <rect x="656" y="40" width="124" height="580" fill="url(#pil)"/>
+            <rect x="104" y="40" width="156" height="32" fill="url(#rim)"/>
+            <rect x="640" y="40" width="156" height="32" fill="url(#rim)"/>
+            <rect x="104" y="556" width="156" height="44" fill="url(#rim)"/>
+            <rect x="640" y="556" width="156" height="44" fill="url(#rim)"/>
+            <!-- warm inner rim light on pillars -->
+            <rect x="236" y="72" width="6" height="484" fill="#7a5a34" opacity=".5"/>
+            <rect x="658" y="72" width="6" height="484" fill="#7a5a34" opacity=".5"/>
           </svg>
-          <div class="dgn__beam"></div>
           <div class="dgn__torch dgn__torch--l"></div>
           <div class="dgn__torch dgn__torch--r"></div>
+          <div class="dgn__beam"></div>
           <div class="dgn__pool"></div>
           <div class="bg__dust" id="dust"></div>
+          <div class="dgn__embers" id="embers"></div>
+          <div class="dgn__strip" id="strip"></div>
           <div class="dgn__vign"></div>
         </div>
 
