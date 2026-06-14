@@ -96,7 +96,43 @@ img,svg{display:block}
   background:rgba(255,255,255,.03);transition:border-color .2s,background .2s;
 }
 .region:hover{border-color:rgba(241,181,40,.4);background:rgba(241,181,40,.06)}
-.region__caret{color:var(--gold);font-size:10px}
+.region__caret{color:var(--gold);font-size:10px;transition:transform .2s}
+.region-wrap{position:relative}
+.region-wrap.is-open .region__caret{transform:rotate(180deg)}
+.region-wrap.is-open .region{border-color:rgba(241,181,40,.5);background:rgba(241,181,40,.08)}
+.region-menu{
+  position:absolute;right:0;top:calc(100% + 8px);min-width:190px;z-index:40;
+  list-style:none;padding:6px;border-radius:11px;
+  background:linear-gradient(180deg,#1b140d,#120c08);
+  border:1px solid var(--line);
+  box-shadow:0 18px 40px rgba(0,0,0,.6);
+  animation:menuIn .14s ease-out;
+}
+.region-menu[hidden]{display:none}
+.region-menu li{
+  display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:8px;
+  font-family:var(--pix);font-size:11px;color:var(--txt);cursor:pointer;
+  transition:background .15s,color .15s;
+}
+.region-menu li::before{content:attr(data-flag);font-size:15px}
+.region-menu li:hover{background:rgba(241,181,40,.12);color:#fff}
+@keyframes menuIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+
+/* toast notifications */
+.toast-host{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);
+   display:flex;flex-direction:column;gap:10px;z-index:90;pointer-events:none}
+.toast{
+  display:flex;align-items:center;gap:10px;padding:13px 18px;border-radius:11px;
+  font-family:var(--pix);font-size:12px;color:#ffe9cf;letter-spacing:.5px;
+  background:linear-gradient(180deg,#241910,#15100a);
+  border:1px solid var(--line);
+  box-shadow:0 14px 34px rgba(0,0,0,.55);
+  animation:toastIn .25s ease-out, toastOut .4s ease-in 2.6s forwards;
+}
+.toast__dot{width:9px;height:9px;border-radius:50%;background:var(--gold);
+   box-shadow:0 0 10px var(--gold)}
+@keyframes toastIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes toastOut{to{opacity:0;transform:translateY(14px)}}
 
 /* ----------------------------------------------------------------- */
 /*  Layout                                                           */
@@ -172,22 +208,62 @@ img,svg{display:block}
 .bg__floor{
   position:absolute;left:0;right:0;bottom:0;height:34%;
   background:
-    linear-gradient(180deg,transparent,rgba(0,0,0,.55)),
-    repeating-linear-gradient(90deg,rgba(255,255,255,.025) 0 2px,transparent 2px 60px),
-    linear-gradient(180deg,#241b13,#0c0805);
+    linear-gradient(180deg,transparent,rgba(0,0,0,.6)),
+    repeating-linear-gradient(0deg,rgba(0,0,0,.4) 0 1px,transparent 1px 46px),
+    repeating-linear-gradient(90deg,rgba(0,0,0,.4) 0 1px,transparent 1px 58px),
+    repeating-linear-gradient(90deg,rgba(255,255,255,.03) 0 1px,transparent 1px 58px),
+    linear-gradient(180deg,#2b2017,#0c0805);
   transform:perspective(420px) rotateX(52deg);
   transform-origin:bottom;
 }
 .bg__vignette{position:absolute;inset:0;background:
    radial-gradient(70% 60% at 50% 42%, transparent 40%, rgba(0,0,0,.55) 100%),
    radial-gradient(120% 100% at 50% 100%, rgba(0,0,0,.6), transparent 60%);}
-.bg__torch{position:absolute;width:280px;height:320px;border-radius:50%;
-   filter:blur(38px);mix-blend-mode:screen;pointer-events:none;
-   background:radial-gradient(circle, rgba(255,150,40,.55), rgba(255,90,20,.18) 45%, transparent 70%);
-   animation:flick 3.2s ease-in-out infinite;}
-.bg__torch--l{left:4%;top:18%}
-.bg__torch--r{right:4%;top:18%;animation-delay:1.1s}
 @keyframes flick{0%,100%{opacity:.85;transform:scale(1)}45%{opacity:1;transform:scale(1.06)}70%{opacity:.78;transform:scale(.98)}}
+
+/* wall torches with living flame */
+.torch{position:absolute;width:22px;height:54px;z-index:2}
+.torch--l{left:20.5%;top:31%}
+.torch--r{right:20.5%;top:31%}
+.torch__bracket{position:absolute;left:50%;bottom:34px;transform:translateX(-50%);
+   width:18px;height:8px;border-radius:3px;
+   background:linear-gradient(180deg,#4a3219,#241509);box-shadow:0 0 0 1px #140c05}
+.torch__stick{position:absolute;left:50%;bottom:0;transform:translateX(-50%);
+   width:8px;height:44px;border-radius:3px;
+   background:linear-gradient(180deg,#5a3b1f,#281809);box-shadow:0 0 0 1px #140c05}
+.torch__flame{position:absolute;left:50%;top:-14px;width:16px;height:26px;
+   transform:translateX(-50%) rotate(-45deg);border-radius:0 50% 50% 50%;
+   background:radial-gradient(circle at 60% 70%,#fff3b0,#ffb02e 42%,#ef5410 76%,#b51d09);
+   box-shadow:0 0 16px 5px rgba(255,120,30,.55);
+   animation:flame .28s ease-in-out infinite alternate}
+.torch__flame::after{content:"";position:absolute;inset:34% 28% 14% 32%;
+   border-radius:0 50% 50% 50%;background:radial-gradient(circle,#fff8d8,#ffd24a);opacity:.92}
+.torch--r .torch__flame{animation-delay:.14s}
+.torch__glow{position:absolute;left:50%;top:-44px;transform:translateX(-50%);
+   width:300px;height:340px;border-radius:50%;filter:blur(42px);mix-blend-mode:screen;
+   pointer-events:none;
+   background:radial-gradient(circle,rgba(255,150,40,.5),rgba(255,90,20,.16) 45%,transparent 70%);
+   animation:flick 3s ease-in-out infinite}
+.torch--r .torch__glow{animation-delay:1.1s}
+@keyframes flame{
+  from{transform:translateX(-50%) rotate(-45deg) scale(1)}
+  to{transform:translateX(-53%) rotate(-42deg) scale(1.06,1.12)}
+}
+
+/* light beam from the arch + film grit */
+.bg__beam{position:absolute;left:50%;top:-2%;width:380px;height:64%;
+   transform:translateX(-50%);pointer-events:none;z-index:1;
+   background:linear-gradient(180deg,rgba(255,210,130,.12),transparent 72%);
+   filter:blur(10px);mix-blend-mode:screen}
+.bg__noise{position:absolute;inset:0;z-index:1;pointer-events:none;
+   opacity:.06;mix-blend-mode:overlay;background-size:200px 200px;
+   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* scattered rubble (filled by JS) */
+.rubble{position:absolute;left:0;right:0;bottom:36px;height:64px;z-index:2;pointer-events:none}
+.rubble span{position:absolute;bottom:0;border-radius:6px 8px 4px 4px;
+   background:linear-gradient(180deg,#3a2f22,#140e09);
+   box-shadow:inset 0 2px 0 rgba(255,255,255,.05),0 5px 10px rgba(0,0,0,.55)}
 
 /* smouldering eyes high in the great arch */
 .bg__eyes{position:absolute;left:50%;top:20%;transform:translateX(-50%);

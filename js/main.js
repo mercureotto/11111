@@ -64,11 +64,103 @@
     });
   }
 
+  /* ---- scattered rubble stones ------------------------------------ */
+  function buildRubble() {
+    var host = document.getElementById('rubble');
+    if (!host) return;
+    for (var i = 0; i < 12; i++) {
+      var s = document.createElement('span');
+      var w = 16 + Math.round(Math.random() * 34);
+      var h = 10 + Math.round(Math.random() * 16);
+      s.style.width = w + 'px';
+      s.style.height = h + 'px';
+      // hug the two sides, keep the centre stage clear
+      var side = Math.random() < 0.5 ? Math.random() * 26 : 74 + Math.random() * 26;
+      s.style.left = side.toFixed(1) + '%';
+      s.style.transform = 'rotate(' + (Math.random() * 8 - 4).toFixed(1) + 'deg)';
+      host.appendChild(s);
+    }
+  }
+
+  /* ---- tiny toast helper ------------------------------------------ */
+  var toastHost;
+  function toast(msg) {
+    if (!toastHost) {
+      toastHost = document.createElement('div');
+      toastHost.className = 'toast-host';
+      document.body.appendChild(toastHost);
+    }
+    var t = document.createElement('div');
+    t.className = 'toast';
+    t.innerHTML = '<span class="toast__dot"></span>' + msg;
+    toastHost.appendChild(t);
+    setTimeout(function () { t.remove(); }, 3200);
+  }
+
+  /* ---- top nav + sidebar active state ----------------------------- */
+  function setupNav() {
+    function group(sel, onPick) {
+      var items = Array.prototype.slice.call(document.querySelectorAll(sel));
+      items.forEach(function (el) {
+        el.addEventListener('click', function (e) {
+          e.preventDefault();
+          items.forEach(function (n) { n.classList.remove('is-active'); });
+          el.classList.add('is-active');
+          if (onPick) onPick(el);
+        });
+      });
+    }
+    group('.topnav__item', function (el) { toast(el.textContent.trim() + ' — coming soon'); });
+    group('.card', function (el) {
+      var t = el.querySelector('.card__title');
+      if (t) toast(t.textContent.trim() + ' — coming soon');
+    });
+  }
+
+  /* ---- region dropdown -------------------------------------------- */
+  function setupRegion() {
+    var wrap = document.querySelector('.region-wrap');
+    var btn = document.getElementById('regionBtn');
+    var menu = document.getElementById('regionMenu');
+    if (!wrap || !btn || !menu) return;
+    function close() {
+      wrap.classList.remove('is-open');
+      menu.hidden = true;
+      btn.setAttribute('aria-expanded', 'false');
+    }
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var open = wrap.classList.toggle('is-open');
+      menu.hidden = !open;
+      btn.setAttribute('aria-expanded', String(open));
+    });
+    menu.querySelectorAll('li').forEach(function (li) {
+      li.addEventListener('click', function () {
+        btn.querySelector('.region__flag').textContent = li.dataset.flag;
+        btn.querySelector('.region__code').textContent = li.dataset.code;
+        close();
+        toast('Region set to ' + li.textContent.trim());
+      });
+    });
+    document.addEventListener('click', close);
+  }
+
+  /* ---- sign-in feedback ------------------------------------------- */
+  function setupSignin() {
+    document.querySelectorAll('[data-signin]').forEach(function (b) {
+      b.addEventListener('click', function () { toast('Connecting wallet…'); });
+    });
+  }
+
   function init() {
     spawnDust();
     buildTeeth();
+    buildRubble();
     countUp();
     parallax();
+    setupNav();
+    setupRegion();
+    setupSignin();
   }
 
   if (document.readyState === 'loading') {
