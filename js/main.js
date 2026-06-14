@@ -51,16 +51,19 @@
   /* ---- gentle parallax of the character on pointer move ----------- */
   function parallax() {
     var stage = document.getElementById('stage');
-    var hero = document.getElementById('hero');
-    if (!stage || !hero) return;
+    var bg = document.getElementById('stageBg');
+    var plate = document.getElementById('nameplate');
+    if (!stage || !bg) return;
     stage.addEventListener('mousemove', function (e) {
       var r = stage.getBoundingClientRect();
       var dx = (e.clientX - r.left) / r.width - 0.5;
       var dy = (e.clientY - r.top) / r.height - 0.5;
-      hero.style.transform = 'translate(' + (dx * 16).toFixed(1) + 'px,' + (dy * 10).toFixed(1) + 'px)';
+      bg.style.transform = 'scale(1.06) translate(' + (dx * -10).toFixed(1) + 'px,' + (dy * -6).toFixed(1) + 'px)';
+      if (plate) plate.style.transform = 'translateX(-50%) translate(' + (dx * 9).toFixed(1) + 'px,' + (dy * 6).toFixed(1) + 'px)';
     });
     stage.addEventListener('mouseleave', function () {
-      hero.style.transform = '';
+      bg.style.transform = 'scale(1.06)';
+      if (plate) plate.style.transform = 'translateX(-50%)';
     });
   }
 
