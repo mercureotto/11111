@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><style>
+  body{margin:0;background:#3a3a44;font-family:monospace;color:#ddd}
+  .wrap{display:flex;gap:30px;padding:24px;align-items:flex-start}
+  canvas{image-rendering:pixelated;background:#23232b;border:1px solid #555}
+  h3{margin:4px 0}
+</style></head>
+<body>
+  <div class="wrap">
+    <div><h3>clean</h3><canvas id="clean"></canvas></div>
+    <div><h3>debug grid</h3><canvas id="grid"></canvas></div>
+    <div><h3>game size</h3><canvas id="small"></canvas></div>
+  </div>
+<script>
+/* ---- palette ------------------------------------------------------ */
+const PAL = {
+  '.':null,
+  'K':'#241019',  // dark outline
+  'h':'#e0a93a',  // hair mid
+  'g':'#a9761f',  // hair shadow
+  'y':'#ffe07a',  // hair light
+  's':'#f1c39a',  // skin mid
+  'S':'#d2986e',  // skin shadow
+  'i':'#ffd9b4',  // skin light
+  'e':'#33263a',  // eye
+  'W':'#f4f4ff',  // eye shine
+  'm':'#a85c46',  // mouth
+  't':'#e6dfce',  // tunic mid
+  'u':'#b3a988',  // tunic shadow
+  'w':'#f7f2e6',  // tunic light
+  'b':'#6e4a2c',  // belt
+  'n':'#e0b545',  // buckle
+  'p':'#5d4636',  // pants mid
+  'q':'#3f3026',  // pants shadow
+  'o':'#3a2a1e',  // boot
+};
+
+/* ---- hero sprite (24 x 27) --------------------------------------- */
+const HERO = [
+"........................",
+"........KKKKKKKK........",
+"......KhhhhhhhhhhK......",
+".....KhhhhhhhhhhhhK.....",
+".....KyyyhhhhhhhhhK.....",
+"....KyyyhhhhhhhhhhgK....",
+"....KghhhhhhhhhhhhgK....",
+"....KghsssssssssshgK....",
+"....KghssWessWesshgK....",
+"....KghssssSSsssshgK....",
+".....KsssssmmsssssK.....",
+".....KSssssssssssSK.....",
+"......KSssssssssSK......",
+".......KSssssssSK.......",
+".........KSssSK.........",
+".....KwtttttttttuuK.....",
+"....KsSwtttttttuuSsK....",
+"....KsSwtttttttuuSsK....",
+"....KSSbbbbnnbbbbSSK....",
+".....KwttttttttttuK.....",
+".....KpppppqqpppppK.....",
+"......KppppqqppppK......",
+"......KppppqqppppK......",
+"......KppppKKppppK......",
+"......KooooKKooooK......",
+"......KooooKKooooK......",
+"........................",
+];
+
+function render(canvas, sprite, scale, grid){
+  const w = sprite[0].length, h = sprite.length;
+  canvas.width = w*scale; canvas.height = h*scale;
+  const c = canvas.getContext('2d');
+  c.clearRect(0,0,canvas.width,canvas.height);
+  for(let y=0;y<h;y++){
+    for(let x=0;x<sprite[y].length;x++){
+      const col = PAL[sprite[y][x]];
+      if(col){ c.fillStyle = col; c.fillRect(x*scale,y*scale,scale,scale); }
+    }
+  }
+  if(grid){
+    c.strokeStyle='rgba(255,255,255,.12)'; c.lineWidth=1;
+    for(let x=0;x<=w;x++){c.beginPath();c.moveTo(x*scale,0);c.lineTo(x*scale,h*scale);c.stroke();}
+    for(let y=0;y<=h;y++){c.beginPath();c.moveTo(0,y*scale);c.lineTo(w*scale,y*scale);c.stroke();}
+    c.strokeStyle='rgba(120,200,255,.5)';
+    for(let x=0;x<=w;x+=4){c.beginPath();c.moveTo(x*scale,0);c.lineTo(x*scale,h*scale);c.stroke();}
+    for(let y=0;y<=h;y+=4){c.beginPath();c.moveTo(0,y*scale);c.lineTo(w*scale,y*scale);c.stroke();}
+    c.fillStyle='#8cf'; c.font='9px monospace';
+    for(let x=0;x<w;x+=2) c.fillText(x, x*scale+1, 9);
+    for(let y=0;y<h;y+=2) c.fillText(y, 1, y*scale+10);
+  }
+}
+
+render(document.getElementById('clean'), HERO, 16, false);
+render(document.getElementById('grid'),  HERO, 16, true);
+render(document.getElementById('small'), HERO, 5, false);
+</script>
+</body></html>
