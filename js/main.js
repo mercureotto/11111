@@ -179,10 +179,6 @@
 
   function init() {
     spawnDust();
-    buildEmbers();
-    buildStrip();
-    countUp();
-    parallax();
     setupNav();
     setupRegion();
     setupSignin();
