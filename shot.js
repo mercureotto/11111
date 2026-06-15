@@ -4,7 +4,7 @@ const path = require('path');
   const browser = await puppeteer.launch({
     executablePath: '/root/.cache/puppeteer/chrome/linux-131.0.6778.204/chrome-linux64/chrome',
     headless: 'new',
-    args: ['--no-sandbox', '--disable-setuid-sandbox', '--force-color-profile=srgb'],
+    args: ['--no-sandbox', '--disable-setuid-sandbox', '--force-color-profile=srgb', '--autoplay-policy=no-user-gesture-required'],
   });
   const page = await browser.newPage();
   await page.setViewport({ width: 1600, height: 860, deviceScaleFactor: 1.5 });

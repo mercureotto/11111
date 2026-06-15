@@ -520,3 +520,8 @@ html,body{height:100%;overflow:hidden}
 /* brand + support pinned bottom-right */
 .brand{position:fixed;right:26px;bottom:18px;z-index:20}
 .support{position:fixed;right:24px;bottom:60px;z-index:20}
+
+/* v5 — looping video background provides the motion */
+.dgn__bg{animation:none}
+.dgn__firelight{display:none}
+video.dgn__bg{object-fit:cover}
