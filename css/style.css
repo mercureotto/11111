@@ -480,3 +480,43 @@ img,svg{display:block}
 .plate__dl{font-size:13px;width:24px;height:24px;border-radius:50%;
    display:grid;place-items:center;background:rgba(255,255,255,.08);
    border:1px solid var(--line);color:var(--txt-dim)}
+
+/* ===================================================================
+   v4 — full-bleed background, side panels removed
+   =================================================================== */
+html,body{height:100%;overflow:hidden}
+.dgn{position:fixed;inset:0;z-index:0;overflow:hidden;background:#0a0705}
+.dgn__bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 42%}
+.dgn__scrim{position:fixed;inset:0;z-index:1;pointer-events:none;background:
+   linear-gradient(90deg,rgba(6,4,3,.66) 0%,rgba(6,4,3,.2) 26%,transparent 48%),
+   linear-gradient(180deg,rgba(6,4,3,.55) 0%,transparent 20%,transparent 72%,rgba(6,4,3,.6) 100%)}
+.dgn__vign{position:fixed;inset:0;z-index:2;pointer-events:none;background:
+   radial-gradient(95% 85% at 50% 44%, transparent 60%, rgba(0,0,0,.5) 100%)}
+.dgn__firelight{position:fixed}
+.bg__dust{position:fixed;inset:0;z-index:3}
+
+/* top bar floats transparently over the scene */
+.topbar{position:fixed;left:0;right:0;top:0;z-index:20;height:58px;
+   background:linear-gradient(180deg,rgba(8,5,3,.9),rgba(8,5,3,.25) 70%,transparent);
+   border-bottom:none}
+
+/* hero text overlay (top-left, below the bar) */
+.hero-wrap{position:relative;z-index:10;min-height:100vh;pointer-events:none}
+.hero-wrap .btn,.hero-wrap a,.region,.plate{pointer-events:auto}
+.hero{position:absolute;left:42px;top:92px;max-width:380px;z-index:10}
+.status{margin-top:16px}
+
+/* nameplate over the baked hero */
+.plate{position:fixed;left:46%;top:10%;transform:translateX(-50%);z-index:11;
+   font-family:var(--fancy);font-size:27px;color:#f4ecd9;white-space:nowrap;
+   display:flex;align-items:center;gap:11px;
+   text-shadow:0 2px 0 #000,0 0 18px rgba(0,0,0,.95)}
+
+/* CTA pinned near the bottom centre */
+.btn--cta{position:fixed;left:50%;bottom:7%;transform:translateX(-50%);
+   padding:18px 50px;font-size:16px;z-index:12;animation:ctaPulse 2.6s ease-in-out infinite}
+.btn--cta:hover{transform:translateX(-50%) translateY(-2px)}
+
+/* brand + support pinned bottom-right */
+.brand{position:fixed;right:26px;bottom:18px;z-index:20}
+.support{position:fixed;right:24px;bottom:60px;z-index:20}
