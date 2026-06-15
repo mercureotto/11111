@@ -509,7 +509,7 @@ html,body{height:100%;overflow:hidden}
 .status{margin-top:16px}
 
 /* nameplate over the baked hero */
-.plate{position:fixed;left:46%;top:10%;transform:translateX(-50%);z-index:11;
+.plate{position:fixed;left:50%;top:39%;transform:translateX(-50%);z-index:11;
    font-family:var(--fancy);font-size:27px;color:#f4ecd9;white-space:nowrap;
    display:flex;align-items:center;gap:11px;
    text-shadow:0 2px 0 #000,0 0 18px rgba(0,0,0,.95)}
