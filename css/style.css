@@ -558,10 +558,10 @@ video.dgn__bg{object-fit:cover}
 /* ===================================================================
    v7 — exact scene 18: closer hero, muted greenery, overlaid blood + coins
    =================================================================== */
-.dgn__bg{object-position:50% 48%}
+.dgn__bg{object-position:62% 52%}
 @keyframes sway{
-  0%,100%{transform:scale(1.16) translate(0,0)}
-  50%{transform:scale(1.175) translate(-0.5%,-0.4%)}
+  0%,100%{transform:scale(1.5) translate(0,0)}
+  50%{transform:scale(1.515) translate(-0.4%,-0.3%)}
 }
 @keyframes emberLight{
   0%,100%{filter:brightness(1) saturate(.8)}
