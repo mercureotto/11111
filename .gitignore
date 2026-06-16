@@ -22,3 +22,8 @@ assets/s*.webp
 assets/n*.webp
 assets/bg*.webp
 assets/ch*.webp
+assets/g*.webp
+board.png
+board-shot.js
+cmp-shot.js
+art/
