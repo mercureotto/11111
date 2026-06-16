@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Geltion — Browser MMORPG with onchain stakes</title>
+  <meta name="description" content="Geltion is a browser-based MMORPG with real onchain stakes. Delve dungeons, farm islands and explore the dark fantasy world of New Geltion." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Cinzel+Decorative:wght@700;900&family=MedievalSharp&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="app">
+
+    <!-- ===================== TOP BAR ===================== -->
+    <header class="topbar">
+      <nav class="topnav">
+        <a class="topnav__item is-active" href="#">Play</a>
+        <a class="topnav__item" href="#">Coins</a>
+        <a class="topnav__item" href="#">Airdrop</a>
+        <a class="topnav__item" href="#">Achievements</a>
+      </nav>
+      <div class="topbar__right">
+        <div class="region-wrap">
+          <button class="region" type="button" id="regionBtn" aria-haspopup="true" aria-expanded="false">
+            <span class="region__flag">🇬🇧</span><span class="region__code">GB</span><span class="region__caret">▾</span>
+          </button>
+          <ul class="region-menu" id="regionMenu" hidden>
+            <li data-flag="🇬🇧" data-code="GB">United Kingdom</li>
+            <li data-flag="🇺🇸" data-code="US">United States</li>
+            <li data-flag="🇪🇺" data-code="EU">Europe</li>
+            <li data-flag="🇯🇵" data-code="JP">Japan</li>
+            <li data-flag="🇷🇺" data-code="RU">Russia</li>
+          </ul>
+        </div>
+        <button class="btn btn--gold btn--sm" type="button" data-signin>Sign in to play</button>
+      </div>
+    </header>
+
+    <!-- ===================== MAIN ===================== -->
+    <main class="layout">
+
+      <!-- ---------- LEFT: menu cards ---------- -->
+      <aside class="sidebar">
+        <a class="card card--play is-active" href="#">
+          <span class="card__title">Play</span>
+          <span class="card__shine"></span>
+        </a>
+        <a class="card card--docs" href="#">
+          <span class="card__body">
+            <span class="card__title">Docs</span>
+            <span class="card__sub">Game docs, rewards, and more</span>
+          </span>
+          <span class="card__icon">📜</span>
+        </a>
+        <a class="card card--blog" href="#">
+          <span class="card__body">
+            <span class="card__title">Blog</span>
+            <span class="card__sub">Updates and announcements</span>
+          </span>
+          <span class="card__icon">🎙️</span>
+        </a>
+        <a class="card card--economy" href="#">
+          <span class="card__body">
+            <span class="card__title">Economy</span>
+            <span class="card__sub">Game items and economy stats</span>
+          </span>
+          <span class="card__icon">🔶</span>
+        </a>
+        <a class="card card--socials" href="#">
+          <span class="card__body">
+            <span class="card__title">Socials</span>
+            <span class="card__sub">Updates, discussions, and events</span>
+          </span>
+          <span class="card__icon card__icon--socials">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M18.9 2H22l-7.1 8.1L23.3 22h-6.6l-5.2-6.8L5.5 22H2.4l7.6-8.7L1 2h6.8l4.7 6.2L18.9 2Zm-1.2 18h1.8L7.4 3.9H5.5L17.7 20Z"/></svg>
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M20.3 4.4A18 18 0 0 0 15.8 3l-.2.4a14 14 0 0 1 3 1A12 12 0 0 0 4 4.4 18 18 0 0 0 3.7 19a18 18 0 0 0 5.4 2.7l.4-.6c-.9-.3-1.7-.7-2.5-1.2l.6-.4a12.9 12.9 0 0 0 11 0l.6.4c-.8.5-1.6.9-2.5 1.2l.4.6A18 18 0 0 0 20.3 19a18 18 0 0 0 0-14.6ZM9 15.3c-1 0-1.9-1-1.9-2.1S8 11 9 11s1.9 1 1.9 2.1S10 15.3 9 15.3Zm6 0c-1 0-1.9-1-1.9-2.1S14 11 15 11s1.9 1 1.9 2.1S16 15.3 15 15.3Z"/></svg>
+          </span>
+        </a>
+      </aside>
+
+      <!-- ---------- CENTER: dungeon stage ---------- -->
+      <section class="stage" id="stage">
+        <div class="dgn" aria-hidden="true">
+          <img class="dgn__bg" id="stageBg" src="assets/scene.webp" alt="The dungeon of New Geltion" />
+          <div class="dgn__firelight"></div>
+          <div class="bg__dust" id="dust"></div>
+          <div class="dgn__scrim"></div>
+          <div class="dgn__vign"></div>
+          <div class="dgn__strip" id="strip"></div>
+        </div>
+
+        <div class="hero">
+          <h1 class="hero__title">Welcome back, adventurer <span class="hero__clover">🍀</span></h1>
+          <p class="hero__kicker">DUNGEONS: NOW LIVE!</p>
+          <div class="hero__desc">
+            Geltion is a browser-based MMORPG with massive onchain stakes. Delve dungeons,
+            farm islands, and explore the dark fantasy world of New Geltion — where risk and
+            reward go hand in hand.
+          </div>
+          <div class="hero__stats">
+            <div class="stat">
+              <span class="stat__trophy">🏆</span>
+              <span class="stat__value" data-count="372495">$0</span>
+              <span class="stat__label">Total keys risked</span>
+            </div>
+            <ul class="status">
+              <li><i class="dot"></i>Dungeons</li>
+              <li><i class="dot"></i>Islands</li>
+              <li><i class="dot"></i>Gold rush</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="nameplate" id="nameplate"><span>Guest</span><span class="nameplate__dl">⬇</span></div>
+
+        <button class="btn btn--gold btn--cta" type="button" data-signin>Sign in to play</button>
+
+        <div class="brand"><span>GELTION</span></div>
+        <button class="support" type="button" aria-label="Support">🎧</button>
+      </section>
+
+      <!-- ---------- RIGHT: profile rail ---------- -->
+      <aside class="rail">
+        <div class="profile">
+          <span class="profile__name">Guest</span>
+          <span class="profile__avatar">G</span>
+        </div>
+        <button class="pts" type="button">
+          <span class="pts__icon">🛡️</span>
+          <span class="pts__spin"></span>
+          <span class="pts__label">PTS (Airdrop)</span>
+        </button>
+      </aside>
+
+    </main>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
