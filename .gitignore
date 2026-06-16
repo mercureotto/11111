@@ -27,3 +27,7 @@ board.png
 board-shot.js
 cmp-shot.js
 art/
+build-standalone.js
+verify-standalone.js
+standalone-check.png
+b2.js
