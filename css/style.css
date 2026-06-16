@@ -527,3 +527,30 @@ html,body{height:100%;overflow:hidden}
 .dgn__bg{animation:none}
 .dgn__firelight{display:none}
 video.dgn__bg{object-fit:cover}
+
+/* ===================================================================
+   v6 — gentle free idle animation (no video): scene sway + firelight
+   =================================================================== */
+.dgn__bg{
+  transform-origin:50% 45%;
+  animation:sway 15s ease-in-out infinite, emberLight 4.5s ease-in-out infinite;
+}
+@keyframes sway{
+  0%,100%{transform:scale(1.05) translate(0,0)}
+  50%{transform:scale(1.065) translate(-0.6%,-0.5%)}
+}
+@keyframes emberLight{
+  0%,100%{filter:brightness(1) saturate(1)}
+  40%{filter:brightness(1.05) saturate(1.05)}
+  68%{filter:brightness(.975) saturate(.99)}
+  84%{filter:brightness(1.03)}
+}
+/* soft flickering warm firelight over the torch zones (blurred, forgiving) */
+.dgn__firelight{display:block;position:fixed;inset:0;z-index:2;pointer-events:none;
+  mix-blend-mode:screen;
+  background:
+    radial-gradient(16% 22% at 13% 40%, rgba(255,150,55,.30), transparent 70%),
+    radial-gradient(15% 20% at 84% 40%, rgba(255,150,55,.28), transparent 70%),
+    radial-gradient(14% 18% at 95% 42%, rgba(255,150,55,.26), transparent 70%);
+  animation:lightFlick 3.4s ease-in-out infinite}
+@keyframes lightFlick{0%,100%{opacity:.55}40%{opacity:1}66%{opacity:.5}82%{opacity:.85}}
